@@ -61,13 +61,13 @@ class CircularBuffer {
 
 		char remove() {
 			cout << rear <<"\n";
-			tempChar =  buffer[rear-1];
+			tempChar =  buffer[rear];
 			buffer[count()] = ' ';
 			front--;
 			if (rear < getSize()-1) {
 				rear++;
 			} else {
-				rear--;
+				rear = 0;
 			}
 			return tempChar;
 
