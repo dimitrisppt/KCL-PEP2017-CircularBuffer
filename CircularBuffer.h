@@ -36,6 +36,10 @@ class CircularBuffer {
 			buffer.reserve(sizeOfBuffer);
 		}
 
+		int getSize() {
+			return sizeOfBuffer;
+		}
+
 		int count() {
 			return front;
 		}
@@ -47,7 +51,7 @@ class CircularBuffer {
 		void add(char newChar) {
 
 			buffer[count()-1] = newChar;
-			if (front < sizeOfBuffer) {
+			if (front < getSize()) {
 				front++;
 			} else {
 				front = 0;
@@ -59,7 +63,7 @@ class CircularBuffer {
 			char tempChar =  buffer[rear-1];
 			buffer[count()] = ' ';
 			front--;
-			if (rear < sizeOfBuffer-1) {
+			if (rear < getSize()-1) {
 				rear++;
 			} else {
 				rear--;
@@ -67,9 +71,6 @@ class CircularBuffer {
 			return tempChar;
 
 		}
-
-
-
 
 };
 
