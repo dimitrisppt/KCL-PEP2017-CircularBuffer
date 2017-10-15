@@ -3,6 +3,9 @@
 
 
 #include "vector.h"
+#include <iostream>
+
+using std::cout;
 using pep::vector;
 
 
@@ -18,7 +21,56 @@ using pep::vector;
  */
 class CircularBuffer {
 
-    
+	private:
+		int front = 0;
+		bool isFull = false;
+		int sizeOfBuffer;
+		vector<char> buffer;
+		int rear = 0;
+
+	public:
+
+		CircularBuffer(const int sizeOfBufferIn)
+			: sizeOfBuffer(sizeOfBufferIn) {
+
+			buffer.reserve(sizeOfBuffer);
+		}
+
+		int count() {
+			return front;
+		}
+
+		bool full() {
+			return isFull;
+		}
+
+		void add(char newChar) {
+
+			buffer[count()-1] = newChar;
+			if (front < sizeOfBuffer) {
+				front++;
+			} else {
+				front = 0;
+			}
+		}
+
+		char remove() {
+			cout << rear <<"\n";
+			char tempChar =  buffer[rear-1];
+			buffer[count()] = ' ';
+			front--;
+			if (rear < sizeOfBuffer-1) {
+				rear++;
+			} else {
+				rear--;
+			}
+			return tempChar;
+
+		}
+
+
+
+
 };
 
 
