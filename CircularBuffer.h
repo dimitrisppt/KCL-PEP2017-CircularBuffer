@@ -27,6 +27,7 @@ class CircularBuffer {
 		int sizeOfBuffer;
 		vector<char> buffer;
 		int rear = 0;
+		char tempChar = ' ';
 
 	public:
 
@@ -60,7 +61,7 @@ class CircularBuffer {
 
 		char remove() {
 			cout << rear <<"\n";
-			char tempChar =  buffer[rear-1];
+			tempChar =  buffer[rear-1];
 			buffer[count()] = ' ';
 			front--;
 			if (rear < getSize()-1) {
