@@ -41,6 +41,14 @@ class CircularBuffer {
 			return sizeOfBuffer;
 		}
 
+		int getRear() {
+			return rear;
+		}
+
+		int getFront() {
+			return front;
+		}
+
 		int count() {
 			return front;
 		}
@@ -52,7 +60,7 @@ class CircularBuffer {
 		void add(char newChar) {
 
 			buffer[count()-1] = newChar;
-			if (front < getSize()) {
+			if (getFront() < getSize()) {
 				front++;
 			} else {
 				front = 0;
@@ -60,11 +68,10 @@ class CircularBuffer {
 		}
 
 		char remove() {
-			cout << rear <<"\n";
-			tempChar =  buffer[rear];
+			tempChar =  buffer[getRear()-1];
 			buffer[count()] = ' ';
 			front--;
-			if (rear < getSize()-1) {
+			if (getRear() < getSize()-1) {
 				rear++;
 			} else {
 				rear = 0;
