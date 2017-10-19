@@ -29,8 +29,7 @@ class CircularBuffer {
 		vector<char> buffer;
 		int rear = 0;
 		char tempChar;
-		vector<char> tempVect;
-
+		
 	public:
 
 		CircularBuffer(int sizeOfBufferIn)
