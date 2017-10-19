@@ -4,6 +4,7 @@
 
 #include "vector.h"
 #include <iostream>
+#include <cmath>
 
 using std::cout;
 using pep::vector;
@@ -24,14 +25,14 @@ class CircularBuffer {
 	private:
 		int front = 0;
 		bool isFull = false;
-		int sizeOfBuffer;
+		int sizeOfBuffer = 0;
 		vector<char> buffer;
 		int rear = 0;
 		char tempChar = ' ';
 
 	public:
 
-		CircularBuffer(const int sizeOfBufferIn)
+		CircularBuffer(int sizeOfBufferIn)
 			: sizeOfBuffer(sizeOfBufferIn) {
 
 			buffer.reserve(sizeOfBuffer);
@@ -50,7 +51,7 @@ class CircularBuffer {
 		}
 
 		int count() {
-			return front;
+			return abs(getRear()-getFront());
 		}
 
 		bool full() {
@@ -59,30 +60,51 @@ class CircularBuffer {
 
 		void add(char newChar) {
 
-			buffer[count()-1] = newChar;
-			if (getFront() < getSize()) {
-				front++;
-			} else {
-				front = 0;
-			}
-		}
-
-		char remove() {
-			tempChar =  buffer[getRear()-1];
-			buffer[count()] = ' ';
-			front--;
+			buffer[getRear()] = newChar;
 			if (getRear() < getSize()-1) {
 				rear++;
 			} else {
 				rear = 0;
 			}
-			return tempChar;
 
 		}
+
+		char remove() {
+
+			tempChar =  buffer[getFront()];
+
+			buffer[getFront()] = ' ';
+			rear--;
+			if (getFront() < getSize()-1) {
+				front++;
+				cout << tempChar << "\n";
+			} else {
+				front = 0;
+				cout << tempChar <<"\n";
+			}
+			return tempChar;
+		}
+		// char tempChar = buffer.front();
+		// vector<char> tempVect;
+		//
+		// for (int i= buffer.size(); i > 0; i--) {
+		// 	tempVect.push_back(buffer.back());
+		// 	buffer.pop_back();
+		// }
+		// tempVect.pop_back();
+		// for (int i=tempVect.size(); i > 0; i--) {
+		// 	buffer.push_back(tempVect.back());
+		// 	tempVect.pop_back();
+		// }
+		//
+		// return tempChar;
+
+
+
+		// don't write any code below this line
 
 };
 
 
-// don't write any code below this line
 
 #endif
