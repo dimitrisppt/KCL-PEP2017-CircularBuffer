@@ -26,7 +26,7 @@ public:
 	}
 	
 	friend ostream& operator<<(ostream & os, Item & item) {
-		os << "{" << item.latitude << ", " << item.longitude << ", \"" << item.id << "\", " << item.time << "}";
+		os << "{" << item.latitude<< ", " << item.longitude << ", \"" << item.id << "\", " << item.time << "}";
 		return os;
 	}
 

@@ -33,8 +33,6 @@ public:
 
 Trade bestBuySellTime(const vector<int> & prices) {
 	
-	
-
     int buyTime = 0;
     int sellTime = 0;
  
